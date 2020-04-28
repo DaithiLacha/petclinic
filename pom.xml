@@ -15,7 +15,10 @@
   <name>petclinic</name>
 
   <properties>
-
+	<sonar.projectKey>DaithiLacha_petclinic</sonar.projectKey>
+    <sonar.organization>daithilacha</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.login>8f221a3337c9a7293daf4dc44d908e99c7c061e1</sonar.login>
     <!-- Generic properties -->
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
