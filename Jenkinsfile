@@ -8,10 +8,30 @@ pipeline {
   tools {
     maven 'mvn'
   }
+  stage ('Compile Stage') {
+    steps {
+      sh 'mvn clean compile'
+    }
+  }
+  stage ('Testing Stage') {
+    steps {
+      sh 'mvn test'
+    }
+  }
   stages {
     stage ('Build') {
       steps {
         sh 'mvn package'
+      }
+    }
+    stage ('SonarCloud Analysis') {
+      steps {
+        sh 'mvn verify sonar:sonar'
+      }
+    }
+    stage ('Push to Nexus') {
+      steps {
+        sh 'mvn deploy'
       }
     }
     stage ('Build Docker Image') {
