@@ -17,9 +17,11 @@ pipeline {
 
   }
   post {
-        always {
-            emailext attachLog: true, body: 'tt', replyTo: 'david.oc4096@gmail.com', subject: 'Leroy Jenkins!', to: 'david.oc4096@gmail.com'
-
+        success {
+            emailext attachLog: true, body: 'build success', replyTo: 'david.oc4096@gmail.com', subject: 'Leroy Jenkins!', to: 'david.oc4096@gmail.com'
+        }
+        failure {
+          emailext attachLog: true, body: 'build failure', replyTo: 'david.oc4096@gmail.com', subject: 'Leroy Jenkins!', to: 'david.oc4096@gmail.com'
         }
     }
 }
