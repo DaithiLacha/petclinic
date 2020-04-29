@@ -8,6 +8,7 @@ pipeline {
   tools {
     maven 'mvn'
   }
+  /*
   stages {
     stage ('Compile Stage') {
       steps {
@@ -24,20 +25,23 @@ pipeline {
         sh 'mvn verify sonar:sonar'
       }
     }
+    */
     stage ('Build') {
       steps {
         sh 'mvn package'
       }
     }
+    /*
     stage ('Push to Nexus') {
       steps {
         sh 'mvn deploy'
       }
 	  }
+    */
     stage ('Build Docker Image') {
 		 steps {
 		    script {
-		    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+		      dockerImage = docker.build registry + ":$BUILD_NUMBER"
 		    }
 		  }
 		}
