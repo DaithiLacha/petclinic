@@ -30,6 +30,8 @@ pipeline {
 		    }
 		  }
 		}
-    sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-ssh', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '/usr/local/bin/ansible-playbook -e JENKINS_BUILD_NUMBER=$BUILD_NUMBER -i /etc/ansible/hosts /etc/ansible/playbook.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '', usePty: true)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+    stage('Deploy to production') {
+      sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-ssh', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '/usr/local/bin/ansible-playbook -e JENKINS_BUILD_NUMBER=$BUILD_NUMBER -i /etc/ansible/hosts /etc/ansible/playbook.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '', usePty: true)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+    }
   }
 }
