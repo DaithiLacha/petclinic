@@ -1,4 +1,9 @@
 pipeline {
+  environment {
+    registry = "daithilacha/petclinic"
+    registryCredential = "DockerHub"
+    dockerImage = ''
+  }
   agent any
   tools {
     maven 'mvn'
@@ -28,6 +33,22 @@ pipeline {
       steps {
         sh 'mvn deploy'
       }
-	}
+	  }
+    stage ('Build Docker Image') {
+		 steps {
+		    script {
+		    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+		    }
+		  }
+		}
+		stage ('Push Image to registry') {
+		  steps {
+		    script {
+		      docker.withRegistry('https://index.docker.io/v1/','DockerHub') {
+		        dockerImage.push()
+		      }
+		    }
+		  }
+		}
   }
 }
