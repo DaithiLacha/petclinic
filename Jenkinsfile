@@ -24,9 +24,19 @@ pipeline {
         sh 'mvn package'
       }
     }
-    stage ('SonarCloud Analysis') {
+    stage("build & SonarQube analysis") {
+      agent any
       steps {
-        sh 'mvn verify sonar:sonar'
+        withSonarQubeEnv('SonarCloud') {
+          sh 'mvn clean package sonar:sonar'
+        }
+      }
+    }
+    stage("Quality Gate") {
+      steps {
+        timeout(time: 1, unit: 'HOURS') {
+          waitForQualityGate abortPipeline: true
+        }
       }
     }
 
