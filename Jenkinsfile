@@ -63,10 +63,10 @@ pipeline {
   }
   post {
         success {
-          emailext attachLog: true, body: 'Build success!', replyTo: 'david.oc4096@gmail.com', subject: 'Leroy Jenkins!', to: 'david.oc4096@gmail.com'
+          emailext attachLog: true, body: 'Build success!', replyTo: 'david.oc4096@gmail.com', subject: 'Leeroy Jenkins!', to: 'david.oc4096@gmail.com'
         }
         failure {
-          emailext attachLog: true, body: 'Build failure!', replyTo: 'david.oc4096@gmail.com', subject: 'Leroy Jenkins!', to: 'david.oc4096@gmail.com'
+          emailext attachLog: true, body: 'Build failure!', replyTo: 'david.oc4096@gmail.com', subject: 'Leeroy Jenkins!', to: 'david.oc4096@gmail.com'
         }
     }
 }
